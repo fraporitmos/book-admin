@@ -1,18 +1,11 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import { getMonth } from "../../utils/Utils";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function getMonth() {
-    const today = new Date();
-    const monthIndex = today.getMonth(); 
-    const monthNames = [
-        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-    ];
-    return monthNames[monthIndex]; 
-}
+
 
 
 export const data = {

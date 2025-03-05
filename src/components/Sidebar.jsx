@@ -10,7 +10,7 @@ const Sidebar = () => {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="flex h-screen w-64 flex-col justify-between  z-40 border-e bg-gray-800">
+    <div className="flex h-screen w-64 fixed  flex-col justify-between  border-e bg-gray-800">
       <div className="px-4 py-6">
         <div className="flex justify-center w-full items-center">
           <img

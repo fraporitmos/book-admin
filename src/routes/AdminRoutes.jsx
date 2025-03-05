@@ -9,7 +9,7 @@ const AppLayout = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="w-full">
+      <div className="w-full ml-64">
         <Outlet />
       </div>
     </div>

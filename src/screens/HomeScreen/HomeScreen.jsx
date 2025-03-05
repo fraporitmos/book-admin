@@ -5,9 +5,14 @@ import OrderItem from "../../components/OrderItem";
 import { calculateIncomeMonth, calculateOrdersMonth } from "../../utils/Utils";
 import Modal from "react-modal";
 import { IoMdCloseCircle } from "react-icons/io";
+import CartCard from "../../components/CartCard";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import OrderItemSkeleton from "../../components/OrderItemSkeleton";
 
 const customStyles = {
   content: {
+    width: "50%",
     top: "50%",
     left: "50%",
     right: "auto",
@@ -19,7 +24,7 @@ const customStyles = {
 
 const HomeScreen = () => {
   const [orders, setOrders] = useState([]);
-  const [currentCart, setCurrentCart] = useState({})
+  const [currentCart, setCurrentCart] = useState([]);
   const [open, setOpen] = useState(false);
   const fetched = useRef(false);
 
@@ -40,11 +45,10 @@ const HomeScreen = () => {
 
   const handleOnAction = (cartBooks) => {
     if (cartBooks.length > 0) {
-      setCurrentCart(cartBooks)
+      setCurrentCart(cartBooks);
       setOpen(true);
     }
   };
-
 
   return (
     <div className="flex mt-12 flex-col justify-center items-center">
@@ -98,21 +102,36 @@ const HomeScreen = () => {
               </th>
             </tr>
           </thead>
-
           <tbody className="divide-y divide-gray-200 ">
-            {orders.map((item) => (
-              <OrderItem
-                key={item.id}
-                payer={item.payer}
-                email={item.email}
-                address={item.address}
-                paymentDate={item.paymentDate}
-                valuePayment={`S/${item.valuePayment}`}
-                state={item.state}
-                onAction={handleOnAction}
-                cart={item.books}
-              />
-            ))}
+            {orders.length > 0 ? (
+              orders.map((item) => (
+                <OrderItem
+                  key={item.id}
+                  payer={item.payer}
+                  email={item.email}
+                  address={item.address}
+                  paymentDate={item.paymentDate}
+                  valuePayment={`S/${item.valuePayment}`}
+                  state={item.state}
+                  onAction={handleOnAction}
+                  cart={item.books}
+                />
+              ))
+            ) : (
+              <>
+                <OrderItemSkeleton />
+                <OrderItemSkeleton />
+                <OrderItemSkeleton />
+                <OrderItemSkeleton />
+
+                <OrderItemSkeleton />
+
+                <OrderItemSkeleton />
+
+                <OrderItemSkeleton />
+
+              </>
+            )}
           </tbody>
         </table>
       </div>
@@ -120,12 +139,25 @@ const HomeScreen = () => {
       <Modal isOpen={open} style={customStyles} contentLabel="Example Modal">
         <div>
           <div className="flex justify-end">
-            <IoMdCloseCircle onClick={()=>setOpen(false)} size={26} className="text-red-500 cursor-pointer" />
+            <IoMdCloseCircle
+              onClick={() => setOpen(false)}
+              size={26}
+              className="text-red-500 cursor-pointer"
+            />
           </div>
-          <div className=" bg-gray-900 w-96 h-96  rounded-lg shadow-md">
-            <pre className="text-sm text-blue-200  font-mono  overflow-auto">
-              {JSON.stringify(currentCart, null, 2)}
-            </pre>
+          <div className=" w-full h-96  rounded-lg shadow-md">
+            {currentCart.map((item) => (
+              <CartCard
+                key={item.id}
+                name={item.name}
+                img={item.img}
+                author={item.author}
+                publisher={item.publisher}
+                discount={item.discount}
+                price={item.price}
+                description={item.description}
+              />
+            ))}
           </div>
         </div>
       </Modal>

@@ -1,11 +1,13 @@
 import React from "react";
 import FilterBooks from "./FilterBooks";
 
-const HeaderBooks = () => {
+const HeaderBooks = ({ filter, setFilter , search, setSearch}) => {
   return (
     <div className="flex p-6 flex-row items-center justify-between w-full bg-gray-800 shadow-xs">
       <span className="flex w-full h-10 text-sm border bg-gray-100 border-gray-300 rounded-full cursor-pointer md:w-1/3">
         <input
+          onChange={(e)=>setSearch(e.target.value)}
+          value={search}
           type="search"
           name="serch"
           placeholder="Search"
@@ -28,7 +30,7 @@ const HeaderBooks = () => {
       </div>
       <div className="flex items-center  mr-8 md:flex">
     
-        <FilterBooks />
+        <FilterBooks setFilter={setFilter} filter={filter}  />
 
       </div>
     </div>

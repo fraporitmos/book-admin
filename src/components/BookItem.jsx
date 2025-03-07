@@ -1,13 +1,15 @@
 import React from "react";
 
 const BookItem = ({
+  _id,
   img,
   name,
   author,
   editorial,
-  description,
   price,
   type,
+  item,
+  onDelete
 }) => {
   return (
     <tr>
@@ -15,10 +17,7 @@ const BookItem = ({
         <img src={img} className="w-24 h-36" alt={img} />
       </td>
       <td className="px-4 py-2 font-lg text-gray-900">
-        <div className="w-96">
           <h3 className="font-bold">{name}</h3>
-          <p className=" text-sm text-gray-500 whitespace-normal line-clamp-3">{description}</p>
-        </div>
       </td>
 
       <td className="px-4 py-2 font-lg  whitespace-nowrap text-gray-700">
@@ -44,6 +43,7 @@ const BookItem = ({
             Editar
           </button>
           <button
+            onClick={()=>onDelete(_id)}
             href="#"
             className="inline-block rounded-sm bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
           >

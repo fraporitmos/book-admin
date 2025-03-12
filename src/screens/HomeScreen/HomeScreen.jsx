@@ -6,7 +6,6 @@ import { calculateIncomeMonth, calculateOrdersMonth } from "../../utils/Utils";
 import Modal from "react-modal";
 import { IoMdCloseCircle } from "react-icons/io";
 import CartCard from "../../components/CartCard";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import OrderItemSkeleton from "../../components/OrderItemSkeleton";
 

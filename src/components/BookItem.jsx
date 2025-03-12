@@ -9,7 +9,8 @@ const BookItem = ({
   price,
   type,
   item,
-  onDelete
+  onDelete,
+  onEdit
 }) => {
   return (
     <tr>
@@ -37,6 +38,7 @@ const BookItem = ({
       <td className="px-4 py-2 whitespace-nowrap">
         <div className="flex   gap-2  items-center justify-center ">
           <button
+            onClick={ () => onEdit(item)}
             href="#"
             className="inline-block rounded-sm bg-blue-600 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700"
           >

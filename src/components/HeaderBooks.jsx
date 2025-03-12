@@ -1,12 +1,20 @@
 import React from "react";
 import FilterBooks from "./FilterBooks";
 
-const HeaderBooks = ({ filter, setFilter , search, setSearch}) => {
+const HeaderBooks = ({ onCreateBook, filter, setFilter, search, setSearch }) => {
   return (
     <div className="flex p-6 flex-row items-center justify-between w-full bg-gray-800 shadow-xs">
+      <button
+        onClick={onCreateBook}
+        type="button"
+        class="py-2 px-4 w-44  bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-indigo-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+      >
+        Agregar libro
+      </button>
+
       <span className="flex w-full h-10 text-sm border bg-gray-100 border-gray-300 rounded-full cursor-pointer md:w-1/3">
         <input
-          onChange={(e)=>setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
           value={search}
           type="search"
           name="serch"
@@ -29,9 +37,7 @@ const HeaderBooks = ({ filter, setFilter , search, setSearch}) => {
         </button>
       </div>
       <div className="flex items-center  mr-8 md:flex">
-    
-        <FilterBooks setFilter={setFilter} filter={filter}  />
-
+        <FilterBooks setFilter={setFilter} filter={filter} />
       </div>
     </div>
   );
